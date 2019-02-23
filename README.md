@@ -16,6 +16,7 @@ _1. Popular times of travel (i.e., occurs most often in the start time)_
 - most common month
 - most common day of week
 - most common hour of day
+- most common day of month
 
 _2. Popular stations and trip_
 - most common start station
