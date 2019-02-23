@@ -198,7 +198,7 @@ def main():
         edit_columns(df)
         individual_trips(df)
 
-        restart = input('\nWould you like to see stats for another city? Enter yay (highly recommended!) (or) nay.\n').lower()
+        restart = input('\nWould you like to restart the program and see stats for another city? Enter yay (highly recommended!) (or) nay.\n').lower()
         if restart != 'yay':
             print("See you again soon! GoodBye!")
             break
