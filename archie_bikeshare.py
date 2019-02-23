@@ -164,7 +164,7 @@ def user_stats(df):
     print("\nThat just took %s seconds! Im a data genie!!" % (time.time() - start_time))
     print('-'*40)
 
-def edit_columns(df):
+def format_output(df):
     """Edits dataframe values ready for desired display."""
 
     df.drop(['month', 'day_name', 'hour', 'Start Time_x', 'combo_stations'], axis=1, inplace=True)
@@ -195,7 +195,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-        edit_columns(df)
+        format_output(df)
         individual_trips(df)
 
         restart = input('\nWould you like to see stats for another city? Enter yay (highly recommended!) (or) nay.\n').lower()
