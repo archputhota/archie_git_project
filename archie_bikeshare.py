@@ -57,10 +57,11 @@ def load_data(city, month, day):
     # convert the Start Time column to datetime
     df['Start Time_x'] = pd.to_datetime(df['Start Time'])
 
-    # extract month and day of week from Start Time to create new columns
+    # extract month day and day of week from Start Time to create new columns
     df['month'] = df['Start Time_x'].dt.month
     df['day_name'] = df['Start Time_x'].dt.weekday_name
     df['hour'] = df['Start Time_x'].dt.hour
+    df['day'] = df['Start Time_x'].dt.day
 
     # filter by month if applicable
     if month != 'all':
@@ -97,6 +98,9 @@ def time_stats(df):
     #Display the most common start hour
     com_hr = df['Start Time_x'].dt.strftime('%I:00 %p')
     print("Most Common Hour is, ", com_hr.mode()[0])
+
+    #Display the most common day of month
+    print("Most Common Day of the Month is, ", df['day'].mode()[0])
 
     print("\nThat just took %s seconds! Awesome huh?!?" % (time.time() - start_time))
     print('-'*40)
@@ -155,16 +159,17 @@ def user_stats(df):
         gender_types = df['Gender'].value_counts()
         print("\nGender Counts are,\n",  gender_types.to_string())
 
-    #Display earliest, most recent, and most common year of birth
+    #Display earliest, most recent, average and most common year of birth
     if 'Birth Year' in df.columns:
         print("\nEarliest Birth Year is, ", int(np.min(df['Birth Year'])))
         print("Most recent Birth Year is, ", int(np.max(df['Birth Year'])))
+        print("The Average Birth Year is, ", int(np.average(df['Birth Year'])))
         print("Most common Birth Year is, ", int(df['Birth Year'].mode()[0]))
 
     print("\nThat just took %s seconds! Im a data genie!!" % (time.time() - start_time))
     print('-'*40)
 
-def edit_columns(df):
+def format_output(df):
     """Edits dataframe values ready for desired display."""
 
     df.drop(['month', 'day_name', 'hour', 'Start Time_x', 'combo_stations'], axis=1, inplace=True)
@@ -195,7 +200,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-        edit_columns(df)
+        format_output(df)
         individual_trips(df)
 
         restart = input('\nWould you like to restart the program and see stats for another city? Enter yay (highly recommended!) (or) nay.\n').lower()
