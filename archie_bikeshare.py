@@ -155,10 +155,11 @@ def user_stats(df):
         gender_types = df['Gender'].value_counts()
         print("\nGender Counts are,\n",  gender_types.to_string())
 
-    #Display earliest, most recent, and most common year of birth
+    #Display earliest, most recent, average and most common year of birth
     if 'Birth Year' in df.columns:
         print("\nEarliest Birth Year is, ", int(np.min(df['Birth Year'])))
         print("Most recent Birth Year is, ", int(np.max(df['Birth Year'])))
+        print("The Average Birth Year is, ", int(np.average(df['Birth Year'])))
         print("Most common Birth Year is, ", int(df['Birth Year'].mode()[0]))
 
     print("\nThat just took %s seconds! Im a data genie!!" % (time.time() - start_time))
